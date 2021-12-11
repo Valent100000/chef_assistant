@@ -21,6 +21,9 @@ def NewWindow2():
     Window3.geometry('650x450+300+200')  # размер окна
     Window3['bg'] = '#FFF5cb'  # цвет окна
 
+    button4 = Button(Window3, text="Добавить")  # кнопка добавить рецепт
+    button4.place(x=280, y=400)
+
     dish_name = Label(Window3, text="Введите название блюда:", fg="black")  # текст в окне и цвет текста
     kitchen = Label(Window3, text="Введите название кухни:")
     ingredient1 = Label(Window3, text="Ингридиент1:", fg="black")  # текст в окне и цвет текста
