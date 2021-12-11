@@ -1,5 +1,5 @@
 from tkinter import *
-from main import choose
+#from chef_assistant import choose
 
 
 def NewWindow():
@@ -7,10 +7,10 @@ def NewWindow():
     Window2.geometry('650x450+300+200')  # размер окна
     Window2['bg'] = '#FFF5cb'  # цвет окна
 
-    result = Label(Window2, text=choose(str(entry.get()), str(entry2.get()), str(entry3.get())))  #
-    result.place(x=120, y=305)
+    #result = Label(Window2, text=choose(str(entry.get()), str(entry2.get()), str(entry3.get())))  #
+    #result.place(x=120, y=305)
 
-    result.pack()
+    #result.pack()
     button.pack()
 
 
