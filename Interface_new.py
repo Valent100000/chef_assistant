@@ -143,7 +143,7 @@ Window = Tk()  # основное окно
 Window.title('Помощник Повара')  # заголовок
 Window.geometry('650x450+300+200')  # размер окна
 Window.resizable(width=False, height=False)  # невозможность менять размер окна
-Window.image = PhotoImage(file='ф.png')  # установка картинки на задний фон
+Window.image = PhotoImage(file='bg.png')  # установка картинки на задний фон
 bg_img = Label(Window, image=Window.image)  # установка картинки задним фоном
 bg_img.place(x=0, y=0)  # расположение картинки
 
