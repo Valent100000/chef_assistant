@@ -1,5 +1,7 @@
 from tkinter import *
-#from chef_assistant import choose
+
+
+# from chef_assistant import choose
 
 
 def NewWindow():
@@ -7,10 +9,10 @@ def NewWindow():
     Window2.geometry('650x450+300+200')  # размер окна
     Window2['bg'] = '#FFF5cb'  # цвет окна
 
-    #result = Label(Window2, text=choose(str(entry.get()), str(entry2.get()), str(entry3.get())))  #
-    #result.place(x=120, y=305)
+    # result = Label(Window2, text=choose(str(entry.get()), str(entry2.get()), str(entry3.get())))  #
+    # result.place(x=120, y=305)
 
-    #result.pack()
+    # result.pack()
     button.pack()
 
 
@@ -18,8 +20,6 @@ def NewWindow2():
     Window3 = Toplevel(Window)
     Window3.geometry('650x450+300+200')  # размер окна
     Window3['bg'] = '#FFF5cb'  # цвет окна
-
-
 
     dish_name = Label(Window3, text="Введите название блюда:", fg="black")  # текст в окне и цвет текста
     kitchen = Label(Window3, text="Введите название кухни:")
@@ -109,7 +109,6 @@ def NewWindow2():
     val4.place(x=320, y=300)
     un4.place(x=430, y=300)
     st4.place(x=530, y=300)
-
 
     button2.pack()  # вызов кнопкой окна 2
 
