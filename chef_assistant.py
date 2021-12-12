@@ -1,44 +1,46 @@
-def filtr(kitchen, time):#выдаёт массив названий блюд, подходящих по кухне блюда и времени еды
-    a = []#массив с строками файла
-    with open("recepts.csv", "r", encoding="utf-8-sig") as f:#кодировка sig для игнорирования ненужных настроечных битов в начале файла
-        for line in f:
-            a.append(line.rstrip())
+def choose (entry, entry2, entry3):
+    def filtr(kitchen, time):
+        choose_meals = []
+        characteristic_dataframe = tinydb.TinyDB('characteristic.db')
+        recipe = tinydb.Query()
+        for recipe in characteristic_dataframe:
+            if kitchen in recipe["Кухни"] and time in recipe["Приём пищи"]:
+                choose_meals.append(str(recipe["Блюдо"]))
+        return choose_meals
 
-    correct = []#отфильтрованные строки
-    meals = []#массив названий найденных отсортированных блюд
-    for i in range(len(a)):
-        if kitchen in a[i] and time in a[i]:
-            correct.append(a[i])
-    for eda in correct:
-        eda = eda[:eda.find(";")]#срез с названием блюда
-        meals.append(eda)
-        #print(meals)
-    return (meals)
-
-def choose_recipes(meals):#расчёт из количества продуктов
-    result_full = []
-    result_part = []
-    fls = []
-    for meal in meals:
-        recipe_dataframe = pandas.read_excel(meal+".xlsx")#открываем файл рецепта
-        recipe_dataframe = pandas.merge(recipe_dataframe, products_dataframe, how='left', on='Продукт')#добавляем в датафрейм рецепта объём необходимых продуктов на складе
-        recipe_dataframe ['Объём_x'] = recipe_dataframe ['Объём_x'].multiply(consumers)#умножаем объём необходимых продуктов на количество людей
-        recipe_dataframe['Сравнение'] = recipe_dataframe['Объём_x'] <= recipe_dataframe['Объём_y']#сравнение массы необходимых и имеющихся продуктов
-        #print(recipe_dataframe)
-        if  not False in recipe_dataframe["Сравнение"].values:
-            result_full.append(meal+" (FULL)")
-        else:
-            fls = recipe_dataframe.query('Сравнение == False')
-            #print(fls)
-            if not "Обязательно" in fls["Статус"].values:
-                result_part.append(meal + " (PART) Trouble:" + str(fls["Продукт"].values))
+    def choose_recipes(choose_meals, consumers):
 
 
-    return (result_full+result_part)
+        trouble = []
+        part = []
+        full = []
+        products = tinydb.TinyDB('products.db')
 
-import pandas
-kitchen = input("Какая кухня подаётся сегодня? ")
-time = input("Какой приём пищи? ")
-consumers = int(input("Сколько человек придёт на приём пищи? "))
-products_dataframe = pandas.read_excel('Products.xlsx')
-print("Choose:", ";".join(choose_recipes(filtr(kitchen, time))))
+        recipes = tinydb.TinyDB('recipes.db')
+
+        for meal in choose_meals:
+            flag=0
+            a = recipes.search(where("Блюдо") == meal)
+
+            for pr in a:
+                b=(pr["Продукт"])
+                kol = products.search(where("Продукт") == b)
+
+                if (not float(pr["Объём"])*consumers<=float(kol[0]["Объём"])) and pr["Статус"] == "Обязательно":
+                    flag=2
+                elif (not float(pr["Объём"])*consumers<=float(kol[0]["Объём"])) and pr["Статус"] == "Необязательно" and flag!=2:
+                    flag=1
+                    trouble.append(pr["Продукт"])
+            if flag == 0:
+                full.append(meal + " (FULL)")
+            if flag  == 1:
+                part.append(meal + " (PART) Trouble:" + ";".join(trouble))
+        return (full+part)
+
+
+    import tinydb
+    from tinydb import TinyDB, Query, where
+    kitchen = entry
+    time = entry2
+    consumers = int(entry3)
+    return (";".join(choose_recipes(filtr(kitchen, time), consumers)))
