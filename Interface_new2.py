@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter.ttk import Combobox
+
 from chef_assistant import choose
 from database import refill_recipe_database, refill_product_database, refill_characteristic_database
 
@@ -12,34 +14,128 @@ def NewWindow():
     result.place(x=120, y=305)
 
     result.pack()
-    button.pack()
 
 
 def NewWindow2():
     Window2 = Toplevel(Window)
-    Window2.geometry('650x450+300+200')  # размер окна
+    Window2.geometry('650x750+300+100')  # размер окна
     Window2['bg'] = '#FFF5cb'  # цвет окна
+
+    def Choose():
+        if combo.get() == '1':
+            Label(Window2, text="Ингредиент5:", fg="black").place(x=50, y=350)
+            Entry(Window2, bg="white", fg="black", width=20).place(x=140, y=350)
+            Label(Window2, text="Объем:", fg="black").place(x=270, y=350)
+            Entry(Window2, bg="white", fg="black", width=5).place(x=320, y=350)
+            Label(Window2, text="Ед.измер:", fg="black").place(x=370, y=350)  # расположение текста Ингредиент
+            Entry(Window2, bg="white", fg="black", width=5).place(x=430, y=350)  # строка для ввода единица измерения
+            Label(Window2, text="Статус:", fg="black").place(x=480, y=350)
+            Entry(Window2, bg="white", fg="black", width=15).place(x=530, y=350)
+
+        elif combo.get() == '2':
+            Label(Window2, text="Ингредиент5:", fg="black").place(x=50, y=350)
+            Entry(Window2, bg="white", fg="black", width=20).place(x=140, y=350)
+            Label(Window2, text="Объем:", fg="black").place(x=270, y=350)
+            Entry(Window2, bg="white", fg="black", width=5).place(x=320, y=350)
+            Label(Window2, text="Ед.измер:", fg="black").place(x=370, y=350)  # расположение текста Ингредиент
+            Entry(Window2, bg="white", fg="black", width=5).place(x=430, y=350)  # строка для ввода единица измерения
+            Label(Window2, text="Статус:", fg="black").place(x=480, y=350)
+            Entry(Window2, bg="white", fg="black", width=15).place(x=530, y=350)
+
+            Label(Window2, text="Ингредиент6:", fg="black").place(x=50, y=400)
+            Entry(Window2, bg="white", fg="black", width=20).place(x=140, y=400)
+            Label(Window2, text="Объем:", fg="black").place(x=270, y=400)
+            Entry(Window2, bg="white", fg="black", width=5).place(x=320, y=400)
+            Label(Window2, text="Ед.измер:", fg="black").place(x=370, y=400)  # расположение текста Ингредиент
+            Entry(Window2, bg="white", fg="black", width=5).place(x=430, y=400)  # строка для ввода единица измерения
+            Label(Window2, text="Статус:", fg="black").place(x=480, y=400)
+            Entry(Window2, bg="white", fg="black", width=15).place(x=530, y=400)
+
+        elif combo.get() == '3':
+            Label(Window2, text="Ингредиент5:", fg="black").place(x=50, y=350)
+            Entry(Window2, bg="white", fg="black", width=20).place(x=140, y=350)
+            Label(Window2, text="Объем:", fg="black").place(x=270, y=350)
+            Entry(Window2, bg="white", fg="black", width=5).place(x=320, y=350)
+            Label(Window2, text="Ед.измер:", fg="black").place(x=370, y=350)  # расположение текста Ингредиент4
+            Entry(Window2, bg="white", fg="black", width=5).place(x=430, y=350)  # строка для ввода единица измерения
+            Label(Window2, text="Статус:", fg="black").place(x=480, y=350)
+            Entry(Window2, bg="white", fg="black", width=15).place(x=530, y=350)
+
+            Label(Window2, text="Ингредиент6:", fg="black").place(x=50, y=400)
+            Entry(Window2, bg="white", fg="black", width=20).place(x=140, y=400)
+            Label(Window2, text="Объем:", fg="black").place(x=270, y=400)
+            Entry(Window2, bg="white", fg="black", width=5).place(x=320, y=400)
+            Label(Window2, text="Ед.измер:", fg="black").place(x=370, y=400)  # расположение текста Ингредиент
+            Entry(Window2, bg="white", fg="black", width=5).place(x=430, y=400)  # строка для ввода единица измерения
+            Label(Window2, text="Статус:", fg="black").place(x=480, y=400)
+            Entry(Window2, bg="white", fg="black", width=15).place(x=530, y=400)
+
+            Label(Window2, text="Ингредиент7:", fg="black").place(x=50, y=450)
+            Entry(Window2, bg="white", fg="black", width=20).place(x=140, y=450)
+            Label(Window2, text="Объем:", fg="black").place(x=270, y=450)
+            Entry(Window2, bg="white", fg="black", width=5).place(x=320, y=450)
+            Label(Window2, text="Ед.измер:", fg="black").place(x=370, y=450)  # расположение текста Ингредиент
+            Entry(Window2, bg="white", fg="black", width=5).place(x=430, y=450)  # строка для ввода единица измерения
+            Label(Window2, text="Статус:", fg="black").place(x=480, y=450)
+            Entry(Window2, bg="white", fg="black", width=15).place(x=530, y=450)
+
+        elif combo.get() == '4':
+            Label(Window2, text="Ингредиент5:", fg="black").place(x=50, y=350)
+            Entry(Window2, bg="white", fg="black", width=20).place(x=140, y=350)
+            Label(Window2, text="Объем:", fg="black").place(x=270, y=350)
+            Entry(Window2, bg="white", fg="black", width=5).place(x=320, y=350)
+            Label(Window2, text="Ед.измер:", fg="black").place(x=370, y=350)  # расположение текста Ингредиент
+            Entry(Window2, bg="white", fg="black", width=5).place(x=430, y=350)  # строка для ввода единица измерения
+            Label(Window2, text="Статус:", fg="black").place(x=480, y=350)
+            Entry(Window2, bg="white", fg="black", width=15).place(x=530, y=350)
+
+            Label(Window2, text="Ингредиент6:", fg="black").place(x=50, y=400)
+            Entry(Window2, bg="white", fg="black", width=20).place(x=140, y=400)
+            Label(Window2, text="Объем:", fg="black").place(x=270, y=400)
+            Entry(Window2, bg="white", fg="black", width=5).place(x=320, y=400)
+            Label(Window2, text="Ед.измер:", fg="black").place(x=370, y=400)  # расположение текста Ингредиент
+            Entry(Window2, bg="white", fg="black", width=5).place(x=430, y=400)  # строка для ввода единица измерения
+            Label(Window2, text="Статус:", fg="black").place(x=480, y=400)
+            Entry(Window2, bg="white", fg="black", width=15).place(x=530, y=400)
+
+            Label(Window2, text="Ингредиент7:", fg="black").place(x=50, y=450)
+            Entry(Window2, bg="white", fg="black", width=20).place(x=140, y=450)
+            Label(Window2, text="Объем:", fg="black").place(x=270, y=450)
+            Entry(Window2, bg="white", fg="black", width=5).place(x=320, y=450)
+            Label(Window2, text="Ед.измер:", fg="black").place(x=370, y=450)  # расположение текста Ингредиент
+            Entry(Window2, bg="white", fg="black", width=5).place(x=430, y=450)  # строка для ввода единица измерения
+            Label(Window2, text="Статус:", fg="black").place(x=480, y=450)
+            Entry(Window2, bg="white", fg="black", width=15).place(x=530, y=450)
+
+            Label(Window2, text="Ингредиент8:", fg="black").place(x=50, y=500)
+            Entry(Window2, bg="white", fg="black", width=20).place(x=140, y=500)
+            Label(Window2, text="Объем:", fg="black").place(x=270, y=500)
+            Entry(Window2, bg="white", fg="black", width=5).place(x=320, y=500)
+            Label(Window2, text="Ед.измер:", fg="black").place(x=370, y=500)  # расположение текста Ингредиент
+            Entry(Window2, bg="white", fg="black", width=5).place(x=430, y=500)  # строка для ввода единица измерения
+            Label(Window2, text="Статус:", fg="black").place(x=480, y=500)
+            Entry(Window2, bg="white", fg="black", width=15).place(x=530, y=500)
 
     dish_name = Label(Window2, text="Введите название блюда:", fg="black")  # текст в окне и цвет текста
     kitchen = Label(Window2, text="Введите название кухни:")
     type_of_eating_time = Label(Window2, text="Введите приём пищи:")  # !!!!!!!!!!!
 
-    ingredient1 = Label(Window2, text="Ингридиент1:", fg="black")  # текст в окне и цвет текста
+    ingredient1 = Label(Window2, text="Ингредиент1:", fg="black")  # текст в окне и цвет текста
     valume1 = Label(Window2, text="Объем:", fg="black")  # текст в окне и цвет текста  # шрифт
     unit1 = Label(Window2, text="Ед.измер:", fg="black")
     status1 = Label(Window2, text="Статус:", fg="black")
 
-    ingredient2 = Label(Window2, text="Ингридиент2:", fg="black")  # текст в окне и цвет текста
+    ingredient2 = Label(Window2, text="Ингредиент2:", fg="black")  # текст в окне и цвет текста
     valume2 = Label(Window2, text="Объем:", fg="black")  # текст в окне и цвет текста  # шрифт
     unit2 = Label(Window2, text="Ед.измер:", fg="black")
     status2 = Label(Window2, text="Статус:", fg="black")
 
-    ingredient3 = Label(Window2, text="Ингридиент3:", fg="black")  # текст в окне и цвет текста
+    ingredient3 = Label(Window2, text="Ингредиент3:", fg="black")  # текст в окне и цвет текста
     valume3 = Label(Window2, text="Объем:", fg="black")  # текст в окне и цвет текста  # шрифт
     unit3 = Label(Window2, text="Ед.измер:", fg="black")
     status3 = Label(Window2, text="Статус:", fg="black")
 
-    ingredient4 = Label(Window2, text="Ингридиент4:", fg="black")  # текст в окне и цвет текста
+    ingredient4 = Label(Window2, text="Ингредиент4:", fg="black")  # текст в окне и цвет текста
     valume4 = Label(Window2, text="Объем:", fg="black")  # текст в окне и цвет текста  # шрифт
     unit4 = Label(Window2, text="Ед.измер:", fg="black")
     status4 = Label(Window2, text="Статус:", fg="black")
@@ -48,22 +144,22 @@ def NewWindow2():
     kitchen.place(x=50, y=100)
     type_of_eating_time.place(x=50, y=75)  # !!!!!!!
 
-    ingredient1.place(x=50, y=150)  # расположение текста Ингридиент1
+    ingredient1.place(x=50, y=150)  # расположение текста Ингредиент1
     valume1.place(x=270, y=150)  # расположение текста Объем
     unit1.place(x=370, y=150)
     status1.place(x=480, y=150)
 
-    ingredient2.place(x=50, y=200)  # расположение текста Ингридиент2
+    ingredient2.place(x=50, y=200)  # расположение текста Ингредиент2
     valume2.place(x=270, y=200)
     unit2.place(x=370, y=200)
     status2.place(x=480, y=200)
 
-    ingredient3.place(x=50, y=250)  # расположение текста Ингридиент3
+    ingredient3.place(x=50, y=250)  # расположение текста Ингредиент3
     valume3.place(x=270, y=250)
     unit3.place(x=370, y=250)
     status3.place(x=480, y=250)
 
-    ingredient4.place(x=50, y=300)  # расположение текста Ингридиент4
+    ingredient4.place(x=50, y=300)  # расположение текста Ингредиент4
     valume4.place(x=270, y=300)
     unit4.place(x=370, y=300)
     status4.place(x=480, y=300)
@@ -72,22 +168,22 @@ def NewWindow2():
     kitch = Entry(Window2, bg="white", fg="black", width=20)
     type_time = Entry(Window2, bg="white", fg="black", width=20)  # !!!!!!!!!!!!
 
-    ingr1 = Entry(Window2, bg="white", fg="black", width=20)  # строка для ввода Ингридиент1
+    ingr1 = Entry(Window2, bg="white", fg="black", width=20)  # строка для ввода Ингредиент1
     val1 = Entry(Window2, bg="white", fg="black", width=5)  # строка для ввода Объем
     un1 = Entry(Window2, bg="white", fg="black", width=5)  # строка для ввода единица измерения
     st1 = Entry(Window2, bg="white", fg="black", width=15)  # строка для ввода Объем
 
-    ingr2 = Entry(Window2, bg="white", fg="black", width=20)  # строка для ввода Ингридиент2
+    ingr2 = Entry(Window2, bg="white", fg="black", width=20)  # строка для ввода Ингредиент2
     val2 = Entry(Window2, bg="white", fg="black", width=5)
     un2 = Entry(Window2, bg="white", fg="black", width=5)  # строка для ввода единица измерения
     st2 = Entry(Window2, bg="white", fg="black", width=15)  # строка для ввода Объем
 
-    ingr3 = Entry(Window2, bg="white", fg="black", width=20)  # строка для ввода Ингридиент3
+    ingr3 = Entry(Window2, bg="white", fg="black", width=20)  # строка для ввода Ингредиент3
     val3 = Entry(Window2, bg="white", fg="black", width=5)
     un3 = Entry(Window2, bg="white", fg="black", width=5)  # строка для ввода единица измерения
     st3 = Entry(Window2, bg="white", fg="black", width=15)  # строка для ввода Объем
 
-    ingr4 = Entry(Window2, bg="white", fg="black", width=20)  # строка для ввода Ингридиент4
+    ingr4 = Entry(Window2, bg="white", fg="black", width=20)  # строка для ввода Ингредиент4
     val4 = Entry(Window2, bg="white", fg="black", width=5)
     un4 = Entry(Window2, bg="white", fg="black", width=5)  # строка для ввода единица измерения
     st4 = Entry(Window2, bg="white", fg="black", width=15)  # строка для ввода Объем
@@ -120,16 +216,22 @@ def NewWindow2():
         refill_recipe_database(str(dish.get()), str(ingr1.get()), str(val1.get()), str(un1.get()), str(st1.get())),
         refill_characteristic_database(str(dish.get()), str(kitch.get()),
                                        str(type_time.get()))))  # кнопка добавить рецепт !!!!!!!!!!
-    button4.place(x=280, y=400)
-
-    button2.pack()  # вызов кнопкой окна 2
+    button4.place(x=300, y=10)
 
     import tinydb
-    from tinydb import TinyDB, Query
 
     recipes = tinydb.TinyDB('recipes.db')
     for x in recipes:
         print(x)
+
+    labelTop = Label(Window2, text="Сколько еще ингредиентов добавить: ")
+    labelTop.place(x=400, y=50)
+
+    Examples = ("1", "2", "3", "4")
+    combo = Combobox(Window2, values=Examples)
+    combo.place(x=400, y=80)
+    Button(Window2, text='+', command=Choose).place(x=550, y=80)
+    combo.current(0)
 
 
 def NewWindow3():
@@ -160,16 +262,13 @@ def NewWindow3():
     # добавить
     # продукт !!!!!!!!!!!!!!!!!!!!
 
-
-
     import tinydb
-    from tinydb import TinyDB, Query
 
     products = tinydb.TinyDB('products.db')
     for x in products:
         print(x)
     button5.place(x=280, y=400)
-    button3.pack()
+
 
 Window = Tk()  # основное окно
 Window.title('Помощник Повара')  # заголовок
