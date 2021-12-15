@@ -20,21 +20,18 @@ def NewWindow2():
     Window2.geometry('650x450+300+100')  # размер окна
     Window2['bg'] = '#FFF5cb'  # цвет окна
 
-    frame = Frame(Window2, bg = '#FFF5cb', width=650, height=450)
-    frame.pack(expand=True, fill=BOTH)
-    canvas= Canvas(frame, bg = '#FFF5cb', width = 650, height = 450, scrollregion = (0,0,700,700))
 
-    dish_name = Label(frame, text="Введите название блюда:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic") )  # текст в окне и цвет текста
-    kitchen = Label(frame, bg="#FFF5cb", text="Введите название кухни:", font=("Etna", 10, "italic"))
-    type_of_eating_time = Label(frame,bg="#FFF5cb", text="Введите приём пищи:", font=("Etna", 10, "italic"))  # !!!!!!!!!!!
+    dish_name = Label(Window2, text="Введите название блюда:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic") )  # текст в окне и цвет текста
+    kitchen = Label(Window2, bg="#FFF5cb", text="Введите название кухни:", font=("Etna", 10, "italic"))
+    type_of_eating_time = Label(Window2,bg="#FFF5cb", text="Введите приём пищи:", font=("Etna", 10, "italic"))  # !!!!!!!!!!!
 
     dish_name.place(x=50, y=50)  # расположение Название блюда
     kitchen.place(x=50, y=100)
     type_of_eating_time.place(x=50, y=75)  # !!!!!!!
 
-    dish = Entry(frame, bg="white", fg="black", width=30)  # строка для ввода Названия блюда
-    kitch = Entry(frame, bg="white", fg="black", width=20)
-    type_time = Entry(frame, bg="white", fg="black", width=20)  # !!!!!!!!!!!!
+    dish = Entry(Window2, bg="white", fg="black", width=30)  # строка для ввода Названия блюда
+    kitch = Entry(Window2, bg="white", fg="black", width=20)
+    type_time = Entry(Window2, bg="white", fg="black", width=20)  # !!!!!!!!!!!!
     dish.place(x=250, y=50)  # расположение поля ввода
     kitch.place(x=250, y=100)
     type_time.place(x=250, y=75)  # !!!!!!!!!!!
@@ -47,16 +44,16 @@ def NewWindow2():
         def add_entry(self, entryWidgets, labelWidgets):
             global ingr_ingr_horiz_coord, ingr_ingr_txt_horiz_coord, ingr_val_horiz_coord, ingr_val_txt_horiz_coord, ingr_un_horiz_coord, ingr_un_txt_horiz_coord, ingr_st_horiz_coord, ingr_st_txt_horiz_coord, ingr_vertical_coord
             entryWidgets.append(
-                [Entry(frame, bg="white", fg="black", width=20), Entry(frame,bg="white",fg="black", width=5),
-                 Entry(frame, bg="white", fg="black", width=5), Entry(frame, bg="white", fg="black", width=15)])
+                [Entry(Window2, bg="white", fg="black", width=20), Entry(Window2,bg="white",fg="black", width=5),
+                 Entry(Window2, bg="white", fg="black", width=5), Entry(Window2, bg="white", fg="black", width=15)])
             entryWidgets[-1][0].place(x=ingr_ingr_horiz_coord, y=ingr_vertical_coord)
             entryWidgets[-1][1].place(x=ingr_val_horiz_coord, y=ingr_vertical_coord)
             entryWidgets[-1][2].place(x=ingr_un_horiz_coord, y=ingr_vertical_coord)
             entryWidgets[-1][3].place(x=ingr_st_horiz_coord, y=ingr_vertical_coord)
 
             labelWidgets.append(
-                [Label(frame, text="Ингредиент:",bg="#FFF5cb", fg="black", font=("Etna", 10, "italic")), Label(frame, text="Объем:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic")),
-                 Label(frame, text="Ед.измер:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic")), Label(frame, text="Статус:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic"))])
+                [Label(Window2, text="Ингредиент:",bg="#FFF5cb", fg="black", font=("Etna", 10, "italic")), Label(Window2, text="Объем:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic")),
+                 Label(Window2, text="Ед.измер:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic")), Label(Window2, text="Статус:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic"))])
             labelWidgets[-1][0].place(x=ingr_ingr_txt_horiz_coord, y=ingr_vertical_coord)
             labelWidgets[-1][1].place(x=ingr_val_txt_horiz_coord, y=ingr_vertical_coord)
             labelWidgets[-1][2].place(x=ingr_un_txt_horiz_coord, y=ingr_vertical_coord)
@@ -73,12 +70,14 @@ def NewWindow2():
         # ingr_vertical_coord = add_entry(self, entryWidgets, labelWidgets)
 
     # Ингредиент, Объем, единица измерения, статус
-    button4 = Button(frame, text="Готово", command=lambda: (
+    def delete_button():
+        Window2.destroy()
+    button4 = Button(Window2, text="Готово", command=lambda: (
                 refill_characteristic_database(str(dish.get()), str(kitch.get()),
-                                       str(type_time.get())), refill_recipe_database(str(dish.get()), entrylabel().getEntries(entryWidgets, massive_ingridients))))  # кнопка добавить рецепт !!!!!!!!!!
+                                       str(type_time.get())), refill_recipe_database(str(dish.get()), entrylabel().getEntries(entryWidgets, massive_ingridients)), delete_button()))  # кнопка добавить рецепт !!!!!!!!!!
     button4.place(x=300, y=10)
     entrylabel().add_entry(entryWidgets, labelWidgets)
-    Button(frame, text='+', command=lambda: entrylabel().add_entry(entryWidgets, labelWidgets)).place(x=550, y=80)
+    Button(Window2, text='+', command=lambda: entrylabel().add_entry(entryWidgets, labelWidgets)).place(x=550, y=80)
 
 
 
@@ -107,8 +106,10 @@ def NewWindow3():
     val.place(x=330, y=200)
     un.place(x=440, y=200)
 
+    def delete_button2():
+        Window3.destroy()
     button5 = Button(Window3, text="Добавить", command=lambda: (refill_product_database(str(prod.get()), str(val.get()),
-                                                                                        str(un.get()))))  # кнопка
+                                                                                        str(un.get())), delete_button2()))  # кнопка
     # добавить
     # продукт !!!!!!!!!!!!!!!!!!!!
 
