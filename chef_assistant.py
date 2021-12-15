@@ -43,4 +43,4 @@ def choose (entry, entry2, entry3):
     kitchen = entry
     time = entry2
     consumers = int(entry3)
-    return (";".join(choose_recipes(filtr(kitchen, time), consumers)))
+    return (";\n".join(choose_recipes(filtr(kitchen, time), consumers)))

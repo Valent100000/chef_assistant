@@ -1,9 +1,10 @@
-def refill_recipe_database(meal, product, amount, units, status):
+def refill_recipe_database(meal, massive_ingridients):
     import tinydb
     from tinydb import TinyDB, Query
     db = tinydb.TinyDB('recipes.db')
     Ingredient = Query()
-    db.insert({'Блюдо': meal, 'Продукт': product, 'Объём': amount, 'Единицы': units, 'Статус': status})
+    for position in massive_ingridients:
+        db.insert({'Блюдо': meal, 'Продукт': position[0], 'Объём': position[1], 'Единицы': position[2], 'Статус': position[3]})
 
 def refill_product_database(product, amount, units):
     import tinydb
@@ -20,5 +21,4 @@ def refill_characteristic_database(meal, kitchen, time):
     kitchen = kitchen.split()
     time = time.split()
     db_2.insert({'Блюдо': meal, 'Кухни': kitchen, 'Приём пищи': time})
-
 
