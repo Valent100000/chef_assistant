@@ -19,7 +19,10 @@ def NewWindow2():
     Window2 = Toplevel(Window)
     Window2.geometry('650x450+300+100')  # размер окна
     Window2['bg'] = '#FFF5cb'  # цвет окна
-
+    
+    frame = Frame(Window2, width=650, height=5500, bg='#FFF5cb')
+    frame.pack(padx=5, pady=10)
+    scroll = Scrollbar(frame)
 
     dish_name = Label(Window2, text="Введите название блюда:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic") )  # текст в окне и цвет текста
     kitchen = Label(Window2, bg="#FFF5cb", text="Введите название кухни:", font=("Etna", 10, "italic"))
@@ -44,16 +47,16 @@ def NewWindow2():
         def add_entry(self, entryWidgets, labelWidgets):
             global ingr_ingr_horiz_coord, ingr_ingr_txt_horiz_coord, ingr_val_horiz_coord, ingr_val_txt_horiz_coord, ingr_un_horiz_coord, ingr_un_txt_horiz_coord, ingr_st_horiz_coord, ingr_st_txt_horiz_coord, ingr_vertical_coord
             entryWidgets.append(
-                [Entry(Window2, bg="white", fg="black", width=20), Entry(Window2,bg="white",fg="black", width=5),
-                 Entry(Window2, bg="white", fg="black", width=5), Entry(Window2, bg="white", fg="black", width=15)])
+                [Entry(frame, bg="white", fg="black", width=20), Entry(frame,bg="white",fg="black", width=5),
+                 Entry(frame, bg="white", fg="black", width=5), Entry(frame, bg="white", fg="black", width=15)])
             entryWidgets[-1][0].place(x=ingr_ingr_horiz_coord, y=ingr_vertical_coord)
             entryWidgets[-1][1].place(x=ingr_val_horiz_coord, y=ingr_vertical_coord)
             entryWidgets[-1][2].place(x=ingr_un_horiz_coord, y=ingr_vertical_coord)
             entryWidgets[-1][3].place(x=ingr_st_horiz_coord, y=ingr_vertical_coord)
 
             labelWidgets.append(
-                [Label(Window2, text="Ингредиент:",bg="#FFF5cb", fg="black", font=("Etna", 10, "italic")), Label(Window2, text="Объем:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic")),
-                 Label(Window2, text="Ед.измер:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic")), Label(Window2, text="Статус:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic"))])
+                [Label(frame, text="Ингредиент:",bg="#FFF5cb", fg="black", font=("Etna", 10, "italic")), Label(frame, text="Объем:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic")),
+                 Label(frame, text="Ед.измер:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic")), Label(frame, text="Статус:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic"))])
             labelWidgets[-1][0].place(x=ingr_ingr_txt_horiz_coord, y=ingr_vertical_coord)
             labelWidgets[-1][1].place(x=ingr_val_txt_horiz_coord, y=ingr_vertical_coord)
             labelWidgets[-1][2].place(x=ingr_un_txt_horiz_coord, y=ingr_vertical_coord)
@@ -72,6 +75,7 @@ def NewWindow2():
     # Ингредиент, Объем, единица измерения, статус
     def delete_button():
         Window2.destroy()
+        
     button4 = Button(Window2, text="Готово", command=lambda: (
                 refill_characteristic_database(str(dish.get()), str(kitch.get()),
                                        str(type_time.get())), refill_recipe_database(str(dish.get()), entrylabel().getEntries(entryWidgets, massive_ingridients)), delete_button()))  # кнопка добавить рецепт !!!!!!!!!!
