@@ -125,7 +125,7 @@ def NewWindow3():
         '''function to close the child window when the button is pressed'''
         Window3.destroy()
     button5 = Button(Window3, text="Добавить", command=lambda: (refill_product_database(str(prod.get()), str(val.get()),
-                                                                                        str(un.get())), delete_button2()))  # кнопка
+                                                                                        str(un.get())), delete_button2()))
 
     button5.place(x=280, y=400)
 
