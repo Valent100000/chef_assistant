@@ -16,7 +16,7 @@ def NewWindow():
 
 def NewWindow2():
     Window2 = Toplevel(Window)
-    Window2.geometry('650x450+300+100')  # размер окна
+    Window2.geometry('650x450+300+200')  # размер окна
     Window2['bg'] = '#FFF5cb'  # цвет окна
     
     frame = Listbox(Window2, bg='#FFF5cb')
