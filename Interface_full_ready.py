@@ -1,5 +1,4 @@
 from tkinter import *
-from tkinter.ttk import Combobox
 
 from chef_assistant import choose
 from database import refill_recipe_database, refill_product_database, refill_characteristic_database
