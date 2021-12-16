@@ -53,4 +53,3 @@ def choose (entry, entry2, entry3):
         res = 'Блюд не найдено!\nПополните склад и \nвнесите новые рецепты в базу.'
         return res
     return (";\n".join(res))
-
