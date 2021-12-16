@@ -19,24 +19,26 @@ def NewWindow2():
     Window2.geometry('650x450+300+100')  # размер окна
     Window2['bg'] = '#FFF5cb'  # цвет окна
     
-    frame = Frame(Window2, width=650, height=5500, bg='#FFF5cb')
-    frame.pack(padx=5, pady=10)
-    scroll = Scrollbar(frame)
+    frame = Listbox(Window2, bg='#FFF5cb')
+    scrollbary = Scrollbar(Window2, orient='vertical')
+    scrollbary.pack(side=RIGHT, fill=Y)
+
+    frame['yscrollcommand'] = scrollbary.set
 
     dish_name = Label(Window2, text="Введите название блюда:", bg="#FFF5cb",fg="black", font=("Etna", 10, "italic") )  # текст в окне и цвет текста
     kitchen = Label(Window2, bg="#FFF5cb", text="Введите название кухни:", font=("Etna", 10, "italic"))
-    type_of_eating_time = Label(Window2,bg="#FFF5cb", text="Введите приём пищи:", font=("Etna", 10, "italic"))  # !!!!!!!!!!!
+    type_of_eating_time = Label(Window2,bg="#FFF5cb", text="Введите приём пищи:", font=("Etna", 10, "italic"))  
 
     dish_name.place(x=50, y=50)  # расположение Название блюда
     kitchen.place(x=50, y=100)
-    type_of_eating_time.place(x=50, y=75)  # !!!!!!!
+    type_of_eating_time.place(x=50, y=75) 
 
     dish = Entry(Window2, bg="white", fg="black", width=30)  # строка для ввода Названия блюда
     kitch = Entry(Window2, bg="white", fg="black", width=20)
-    type_time = Entry(Window2, bg="white", fg="black", width=20)  # !!!!!!!!!!!!
+    type_time = Entry(Window2, bg="white", fg="black", width=20) 
     dish.place(x=250, y=50)  # расположение поля ввода
     kitch.place(x=250, y=100)
-    type_time.place(x=250, y=75)  # !!!!!!!!!!!
+    type_time.place(x=250, y=75) 
 
     entryWidgets = []
     massive_ingridients = []
@@ -69,9 +71,7 @@ def NewWindow2():
 
             print(massive_ingridients)
             return(massive_ingridients)
-        # ingr_vertical_coord = add_entry(self, entryWidgets, labelWidgets)
 
-    # Ингредиент, Объем, единица измерения, статус
     def delete_button():
         Window2.destroy()
         
@@ -83,7 +83,8 @@ def NewWindow2():
     Button(Window2, text='+', command=lambda: entrylabel().add_entry(entryWidgets, labelWidgets)).place(x=550, y=80)
 
 
-
+    frame.pack(side='left', ipadx=400,ipady=800)
+    scrollbary['command'] = frame.yview
 
 
 def NewWindow3():
@@ -96,12 +97,12 @@ def NewWindow3():
     valume = Label(Window3, text="Объем:", bg="#FFF5cb", fg="black",font=("Etna", 10, "italic"))  # текст в окне и цвет текста  # шрифт
     unit = Label(Window3, text="Ед.измер:", bg="#FFF5cb", fg="black", font=("Etna", 10, "italic"))
 
-    label.place(x=130, y=100)
-    product.place(x=50, y=200)  # расположение текста Ингридиент2
+    label.place(x=130, y=100) # расположение текста Ингредиент
+    product.place(x=50, y=200)  
     valume.place(x=270, y=200)
     unit.place(x=370, y=200)
 
-    prod = Entry(Window3, bg="white", fg="black", width=20)  # строка для ввода Ингридиент2
+    prod = Entry(Window3, bg="white", fg="black", width=20)  # строка для ввода Ингредиент
     val = Entry(Window3, bg="white", fg="black", width=5)
     un = Entry(Window3, bg="white", fg="black", width=5)  # строка для ввода единица измерения
 
