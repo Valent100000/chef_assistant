@@ -1,5 +1,7 @@
 def choose (entry, entry2, entry3):
+    '''function for giving the cook a choice of dishes that he can cook'''
     def filtr(kitchen, time):
+        '''function of filtering dishes by characteristics (kitchen, meal time)'''
         choose_meals = []
         characteristic_dataframe = tinydb.TinyDB('characteristic.db')
         recipe = tinydb.Query()
@@ -9,7 +11,7 @@ def choose (entry, entry2, entry3):
         return choose_meals
 
     def choose_recipes(choose_meals, consumers):
-
+        '''function that matches the ingredients of filtered dishes with a database of products'''
         trouble = []
         part = []
         full = []
@@ -46,4 +48,9 @@ def choose (entry, entry2, entry3):
     kitchen = entry
     time = entry2
     consumers = int(entry3)
-    return (";\n".join(choose_recipes(filtr(kitchen, time), consumers)))
+    res = choose_recipes(filtr(kitchen, time), consumers)
+    if not res:
+        res = 'Блюд не найдено!\nПополните склад и \nвнесите новые рецепты в базу.'
+        return res
+    return (";\n".join(res))
+

@@ -5,22 +5,27 @@ from database import refill_recipe_database, refill_product_database, refill_cha
 
 
 def NewWindow():
+    '''creating the main window
+        Parameters: Window1: window name
+        result: collects data entered in the entry'''
     Window1 = Toplevel(Window)
     Window1.geometry('650x450+300+200')  # размер окна
     Window1['bg'] = '#FFF5cb'  # цвет окна
+    Label(Window1, text='Что можно приготовить:', bg='#FFF5cb', fg='#4F6000',font=("Etna", 13, "italic")).place(x=10, y=40)
 
-    result = Label(Window1, text=choose(str(entry.get()), str(entry2.get()), str(entry3.get())))  #
-    result.place(x=120, y=305)
+    result = Label(Window1, text=choose(str(entry.get()), str(entry2.get()), str(entry3.get())),bg='#FFF5cb', fg='#4F6000',font=("Etna", 13, "italic"))  #
+    result.place(x=200, y=70)
 
 
 
 def NewWindow2():
+    '''creating a child window, in which we add recipes to the database'''
     Window2 = Toplevel(Window)
     Window2.geometry('650x450+300+200')  # размер окна
     Window2['bg'] = '#FFF5cb'  # цвет окна
     
     frame = Listbox(Window2, bg='#FFF5cb')
-    scrollbary = Scrollbar(Window2, orient='vertical')
+    scrollbary = Scrollbar(frame, orient='vertical')
     scrollbary.pack(side=RIGHT, fill=Y)
 
     frame['yscrollcommand'] = scrollbary.set
@@ -45,7 +50,9 @@ def NewWindow2():
     labelWidgets = []
 
     class entrylabel():
+        '''a class for working with ingredients entered in the added entries when the button is clicked'''
         def add_entry(self, entryWidgets, labelWidgets):
+            '''function for adding a new field for entering information when the button is clicked'''
             global ingr_ingr_horiz_coord, ingr_ingr_txt_horiz_coord, ingr_val_horiz_coord, ingr_val_txt_horiz_coord, ingr_un_horiz_coord, ingr_un_txt_horiz_coord, ingr_st_horiz_coord, ingr_st_txt_horiz_coord, ingr_vertical_coord
             entryWidgets.append(
                 [Entry(frame, bg="white", fg="black", width=20), Entry(frame,bg="white",fg="black", width=5),
@@ -66,13 +73,15 @@ def NewWindow2():
             ingr_vertical_coord += 50
 
         def getEntries(self, entryWidgets, massive_ingridients):
-            for x in entryWidgets:# i.e for each widget in entryWidget list
+            '''function for reading information about the entered ingredient and sending it to the database'''
+            for x in entryWidgets:
                 massive_ingridients.append([str(x[0].get()), str(x[1].get()),str(x[2].get()), str(x[3].get())])
 
             print(massive_ingridients)
             return(massive_ingridients)
 
     def delete_button():
+        '''function to close the child window when the button is pressed'''
         Window2.destroy()
         
     button4 = Button(Window2, text="Готово", command=lambda: (
@@ -82,12 +91,14 @@ def NewWindow2():
     entrylabel().add_entry(entryWidgets, labelWidgets)
     Button(Window2, text='+', command=lambda: entrylabel().add_entry(entryWidgets, labelWidgets)).place(x=550, y=80)
 
-
+    scrollbary.pack()
     frame.pack(side='left', ipadx=400,ipady=800)
     scrollbary['command'] = frame.yview
 
 
+
 def NewWindow3():
+    '''creating a child window, in which we add recipes to the database'''
     Window3 = Toplevel(Window)
     Window3.geometry('650x450+300+200')  # размер окна
     Window3['bg'] = '#FFF5cb'  # цвет окна
@@ -111,11 +122,10 @@ def NewWindow3():
     un.place(x=440, y=200)
 
     def delete_button2():
+        '''function to close the child window when the button is pressed'''
         Window3.destroy()
     button5 = Button(Window3, text="Добавить", command=lambda: (refill_product_database(str(prod.get()), str(val.get()),
                                                                                         str(un.get())), delete_button2()))  # кнопка
-    # добавить
-    # продукт !!!!!!!!!!!!!!!!!!!!
 
     button5.place(x=280, y=400)
 

@@ -1,4 +1,5 @@
 def refill_recipe_database(meal, massive_ingridients):
+    '''function of replenishing the recipe database'''
     import tinydb
     from tinydb import TinyDB, Query
     db = tinydb.TinyDB('recipes.db')
@@ -7,6 +8,7 @@ def refill_recipe_database(meal, massive_ingridients):
         db.insert({'Блюдо': meal, 'Продукт': position[0], 'Объём': position[1], 'Единицы': position[2], 'Статус': position[3]})
 
 def refill_product_database(product, amount, units):
+    '''function to replenish the database warehouse'''
     import tinydb
     from tinydb import TinyDB, Query
     db_1 = tinydb.TinyDB('products.db')
@@ -14,6 +16,7 @@ def refill_product_database(product, amount, units):
     db_1.insert({'Продукт': product, 'Объём': amount, 'Единицы': units})
 
 def refill_characteristic_database(meal, kitchen, time):
+    '''function to replenish the database of characteristic'''
     import tinydb
     from tinydb import TinyDB, Query
     db_2 = tinydb.TinyDB('characteristic.db')
