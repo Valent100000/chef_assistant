@@ -68,7 +68,7 @@ class sumsTest(unittest.TestCase):
         db_1 = tinydb.TinyDB('products.db')
         db_2 = tinydb.TinyDB('characteristic.db')
         refill_characteristic_database("Латунья Сатурнская", "Галактическая", "Завтрак Обед Ужин")
-        refill_recipe_database("Латунья Сатурнская", [["Грунт сатурнский", "0.2", "г", "Обязательно"], ["Лёд сатурнский", "1", "кг", "Необязательно"]])
+        refill_recipe_database("Латунья Сатурнская", [["Грунт сатурнский", "0.2", "г", "Обязательно"], ["Лёд сатурнский", "1", "кг", "Обязательно"]])
         refill_product_database("Грунт сатурнский", "55", "г")
         self.assertEqual(choose("Галактическая", "Обед", "12"), "Блюд не найдено!\nПополните склад и \nвнесите новые рецепты в базу.")
         db.remove(where('Блюдо') == 'Латунья Сатурнская')
