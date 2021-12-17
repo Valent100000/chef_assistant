@@ -30,7 +30,7 @@ def refill_characteristic_database(meal, kitchen, time):
    function to replenish the database of goods by characteristics of the kitchen and the time of food intake\n
    функция для пополнения базы данных товаров по характеристикам кухня и время приема пищи
     """
-   import tinydb
+    import tinydb
     from tinydb import TinyDB, Query
     db_2 = tinydb.TinyDB('characteristic.db')
     Meals = Query()
