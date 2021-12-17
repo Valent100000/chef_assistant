@@ -3,6 +3,10 @@ from chef_assistant import choose
 from database import refill_recipe_database, refill_product_database, refill_characteristic_database
 
 class sumsTest(unittest.TestCase):
+    """
+    test function checks for the presence of all ingredients and all are mandatory\n
+    тест функция проверяет на наличие всех ингредиентов и все являются обязательными
+    """
     def test_1(self):
         import tinydb
         from tinydb import TinyDB, Query, where
@@ -23,6 +27,10 @@ class sumsTest(unittest.TestCase):
         db_2.close()
 
     def test_2(self):
+        """
+        test function with a lack of a sufficient amount of an optional ingredient\n
+        тест функция с отсутствием достаточного количества необязательного ингредиента
+        """
         import tinydb
         from tinydb import TinyDB, Query, where
         db = tinydb.TinyDB('recipes.db')
@@ -42,6 +50,10 @@ class sumsTest(unittest.TestCase):
         db_2.close()
 
     def test_3(self):
+        """
+        test function with lack of sufficient required ingredient\n
+        тест функция с отсутствием достаточного количества обязательного ингредиента
+        """
         import tinydb
         from tinydb import TinyDB, Query, where
         db = tinydb.TinyDB('recipes.db')
@@ -62,6 +74,10 @@ class sumsTest(unittest.TestCase):
         db_2.close()
 
     def test_4(self):
+        """
+        test function with the absence of a mandatory ingredient in the product database\n
+        тест функция с отсутствием обязательного ингредиента в базе данных продуктов
+        """
         import tinydb
         from tinydb import TinyDB, Query, where
         db = tinydb.TinyDB('recipes.db')
@@ -79,6 +95,10 @@ class sumsTest(unittest.TestCase):
         db_2.close()
 
     def test_5(self):
+        """
+        test function with the absence of an optional ingredient in the product database\n
+        тест функция с отсутствием необязательного ингредиента в базе данных продуктов
+        """
         import tinydb
         from tinydb import TinyDB, Query, where
         db = tinydb.TinyDB('recipes.db')
