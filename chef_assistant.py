@@ -8,6 +8,7 @@ def choose (entry, entry2, entry3):
         for recipe in characteristic_dataframe:
             if kitchen in recipe["Кухни"] and time in recipe["Приём пищи"]:
                 choose_meals.append(str(recipe["Блюдо"]))
+        characteristic_dataframe.close()
         return choose_meals
 
     def choose_recipes(choose_meals, consumers):
@@ -34,12 +35,18 @@ def choose (entry, entry2, entry3):
                         flag = 1
                         trouble.append(pr["Продукт"])
                 else:
-                    flag = 3
+                    if pr["Статус"] == "Обязательно":
+                        flag = 3
+                    else:
+                        flag = 1
+                        trouble.append(pr["Продукт"])
 
             if flag == 0:
                 full.append(meal + " (FULL)")
             if flag  == 1:
                 part.append(meal + " (PART) Trouble:" + ";".join(trouble))
+        products.close()
+        recipes.close()
         return (full+part)
 
 
