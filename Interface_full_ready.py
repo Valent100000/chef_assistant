@@ -1,7 +1,7 @@
 from tkinter import *
 
 from chef_assistant import choose
-from database import refill_recipe_database, refill_product_database, refill_characteristic_database, delete_product
+from database import refill_recipe_database, refill_product_database, refill_characteristic_database, delete_product, delete_recipe
 
 def NewWindow():
     """
@@ -29,14 +29,15 @@ def NewWindow2():
     Window2_host = Toplevel(Window)
     Window2_host.geometry('650x450+300+200')  # размер окна
     Window2_host['bg'] = '#FFF5cb'  # цвет окна
-    canvas = Canvas(Window2_host) #
-    Window2 = Frame(canvas) #
+    canvas = Canvas(Window2_host)  # прокручиваемый контейнер
+    Window2 = Frame(canvas)  # добавление фрейм в контейнер canvas
     Window2_host.bind( "<Configure>",lambda e: canvas.configure(scrollregion=canvas.bbox("all"))) #
 
-    frame = Listbox(Window2, bg='#FFF5cb') # добавление спец поля для прокручиваемых элементов
-    scrollbar = Scrollbar(Window2_host, orient='vertical', command=canvas.yview) # скрол в окне, ориентация вертикальная, команда пролистывания канвас
-    scrollbar.pack(side=RIGHT, fill=Y) #  расположение скрола по правой стороне и движение по оси У
-    canvas.configure(yscrollcommand=scrollbar.set) #
+    frame = Frame(Window2, bg='#FFF5cb')  # добавление спец поля для прокручиваемых элементов
+    scrollbar = Scrollbar(Window2_host, orient='vertical',
+                          command=canvas.yview)  # скролл в окне, ориентация вертикальная, команда пролистывания контейнер
+    scrollbar.pack(side=RIGHT, fill=Y)  # расположение скролла по правой стороне и движение по оси У
+    canvas.configure(yscrollcommand=scrollbar.set)  # перемещение поля canvas по вертикали
 
     dish_name = Label(Window2, text="Введите название блюда:", bg="#FFF5cb", fg="black",
                       font=("Etna", 10, "italic"))  # текст в окне , цвет текста, цвет заднего поля # шрифт
@@ -98,7 +99,6 @@ def NewWindow2():
             for x in entryWidgets:
                 massive_ingridients.append([str(x[0].get()), str(x[1].get()), str(x[2].get()), str(x[3].get())])
 
-            print(massive_ingridients)
             return (massive_ingridients)
 
     def delete_button():
@@ -106,9 +106,9 @@ def NewWindow2():
         function to close the child window when the button is pressed\n
         функция закрывает дочернее окно при нажатии на кнопку 'Готово'
         """
-        Window2.destroy()
+        Window2_host.destroy()
 
-    button4 = Button(Window2, text="Готово", command=lambda: (
+    button4 = Button(Window2_host, text="Готово", command=lambda: (
         refill_characteristic_database(str(dish.get()), str(kitch.get()),
                                        str(type_time.get())),
         refill_recipe_database(str(dish.get()), Widgets().getEntries(entryWidgets, massive_ingredients)),
@@ -116,19 +116,19 @@ def NewWindow2():
     button4.place(x=300, y=10) # расположение кнопки добавить рецепт в базу данных и закрыть окно
 
     Widgets().add_entry(entryWidgets, labelWidgets)
-    Button(Window2, text='+', command=lambda: Widgets().add_entry(entryWidgets, labelWidgets)).place(x=550, y=80) # кнопка добавить доп поля для ввода и расположение кнопки
+    Button(Window2_host, text='+', command=lambda: Widgets().add_entry(entryWidgets, labelWidgets)).place(x=550, y=80) # кнопка добавить доп поля для ввода и расположение кнопки
 
-    scrollbar.pack() #
-    frame.pack(side='left', ipadx=400, ipady=800, expand=True) #
-    Window2.pack(side="left", fill="both", expand=True) #
-    canvas.create_window((0, 0), window=Window2, anchor="nw") #
-    canvas.pack(side="left", fill="both", expand=True) #
+    scrollbar.pack()
+    frame.pack(side='left', ipadx=400, ipady=800, expand=True)  # размер окна frame
+    Window2.pack(side="left", fill="both", expand=True)  # выравнивание по левой стороне,
+    canvas.create_window((0, 0), window=Window2,anchor="nw")  # расположение контейнера, левый верхний угол имеет координаты 0,0
+    canvas.pack(side="left", fill="both", expand=True)  # выравнивание по левой стороне,
 
 
 def NewWindow3():
     """
-    creating a child window, in which we add products to the database\n
-    создание дочернего окна, в котором мы добавляем продукт в базу данных склада
+    creating a child window, in which we add products or delete the product from the database and delete the recipe from the database\n
+    создание дочернего окна, в котором мы добавляем продукт или удаляем продукт из базы данных, удаляем рецепт из базы данных
     """
     Window3 = Toplevel(Window)
     Window3.geometry('650x450+300+200')  # размер окна
@@ -141,18 +141,18 @@ def NewWindow3():
                    font=("Etna", 10, "italic"))  # текст в окне и цвет текста  # шрифт
     unit = Label(Window3, text="Ед.измер:", bg="#FFF5cb", fg="black", font=("Etna", 10, "italic")) # текст в окне и цвет текста # шрифт
 
-    label.place(x=130, y=100)  # расположение текста Добавление продукта на склад
-    product.place(x=50, y=160)  # расположение текста продукт
-    valume.place(x=270, y=160)  # расположение текста объем
-    unit.place(x=370, y=160)    # расположение текста ед. измерения
+    label.place(x=130, y=50)  # расположение текста Добавление продукта на склад
+    product.place(x=50, y=110)  # расположение текста продукт
+    valume.place(x=270, y=110)  # расположение текста объем
+    unit.place(x=370, y=110)    # расположение текста ед. измерения
 
     prod = Entry(Window3, bg="white", fg="black", width=20)  # строка для ввода продукт
     val = Entry(Window3, bg="white", fg="black", width=5)   # строка для ввода объема
     un = Entry(Window3, bg="white", fg="black", width=5)  # строка для ввода единица измерения
 
-    prod.place(x=140, y=160) # расположение поля для ввода продукт
-    val.place(x=330, y=160) # расположение поля для ввода объема
-    un.place(x=440, y=160)  # расположение поля для ввода единица измерения
+    prod.place(x=140, y=110) # расположение поля для ввода продукт
+    val.place(x=330, y=110) # расположение поля для ввода объема
+    un.place(x=440, y=110)  # расположение поля для ввода единица измерения
 
     label2 = Label(Window3, text="Удаление продукта со склада:", fg="black", bg='#FFF5cb',
                   font=("Times", "20", "bold"))  # текст в окне и цвет текста # шрифт
@@ -160,13 +160,25 @@ def NewWindow3():
                     font=("Etna", 10, "italic"))  # текст в окне и цвет текста # шрифт
 
 
-    label2.place(x=130, y=230)  # расположение текста Удаление продукта со склада
-    product2.place(x=50, y=300)  # расположение текста продукт
+    label2.place(x=130, y=180)  # расположение текста Удаление продукта со склада
+    product2.place(x=50, y=250)  # расположение текста продукт
 
 
     prod2 = Entry(Window3, bg="white", fg="black", width=20)  # строка для ввода продукт
 
-    prod2.place(x=140, y=300)  # расположение поля для ввода продукт
+    prod2.place(x=140, y=250)  # расположение поля для ввода продукт
+
+    label3 = Label(Window3, text="Удаление рецепта:", fg="black", bg='#FFF5cb',
+                   font=("Times", "20", "bold"))  # текст в окне и цвет текста # шрифт
+    product3 = Label(Window3, text="Продукт:", bg="#FFF5cb", fg="black",
+                     font=("Etna", 10, "italic"))  # текст в окне и цвет текста # шрифт
+
+    label3.place(x=130, y=290)  # расположение текста Удаление рецепта со склада
+    product3.place(x=50, y=350)  # расположение текста продукт
+
+    prod3 = Entry(Window3, bg="white", fg="black", width=20)  # строка для ввода продукт
+
+    prod3.place(x=140, y=350)  # расположение поля для ввода продукт
 
 
     def delete_button():
@@ -178,9 +190,9 @@ def NewWindow3():
 
 
     button5 = Button(Window3, text="Готово", command=lambda: (refill_product_database(str(prod.get()), str(val.get()),
-                                                                                        str(un.get())), delete_product(prod2.get()), delete_button()))  # кнопка для добавления продукта на склад и закрытие окна
+                                                                                        str(un.get())), delete_product(prod2.get()),delete_recipe(prod3.get()), delete_button())) # передача данных в ответственные функции
 
-    button5.place(x=300, y=370)  # расположение кнопки для добавления продукта на склад и закрытие окна
+    button5.place(x=300, y=400)  # расположение кнопки для добавления продукта на склад и закрытие окна
 
 
 Window = Tk()  # основное окно
@@ -195,9 +207,9 @@ button = Button(Window, text="Показать варианты", command=NewWin
 button.place(x=250, y=300)  # расположение кнопки
 
 button2 = Button(Window, text="Добавить рецепт", command=NewWindow2)  # кнопка добавить рецепт
-button2.place(x=510, y=400)  # расположение кнопки 'Добавить рецепт'
+button2.place(x=510, y=390)  # расположение кнопки 'Добавить рецепт'
 
-button3 = Button(Window, text="Добавить продукт на склад\n или удалить", command=NewWindow3)  # кнопка добавить рецепт
+button3 = Button(Window, text="Редактировать базы данных", command=NewWindow3)  # кнопка добавить рецепт
 button3.place(x=280, y=390)  # расположение кнопки 'Добавить продукт на склад'
 
 text1 = Label(Window, text="Введите название кухни:", bg="#FFF5cb", fg="#4F6000",
@@ -230,3 +242,4 @@ ingr_st_txt_horiz_coord = 465
 ingr_vertical_coord = 145
 
 Window.mainloop()
+
