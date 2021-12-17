@@ -1,4 +1,8 @@
 def refill_recipe_database(meal, massive_ingridients):
+    """
+    function for replenishing the recipe database\n
+    функция для пополнения базы данных рецептов
+    """
     import tinydb
     from tinydb import TinyDB, Query
     db = tinydb.TinyDB('recipes.db')
@@ -8,6 +12,10 @@ def refill_recipe_database(meal, massive_ingridients):
     db.close()
 
 def refill_product_database(product, amount, units):
+    """
+    function to replenish the database of products in stock\n
+    функция для пополнения базы данных товаров на складе
+    """
     import tinydb
     from tinydb import TinyDB, Query
     db_1 = tinydb.TinyDB('products.db')
@@ -16,6 +24,10 @@ def refill_product_database(product, amount, units):
     db_1.close()
 
 def refill_characteristic_database(meal, kitchen, time):
+    """
+   function to replenish the database of goods by characteristics of the kitchen and the time of food intake\n
+   функция для пополнения базы данных товаров по характеристикам кухня и время приема пищи
+    """
     import tinydb
     from tinydb import TinyDB, Query
     db_2 = tinydb.TinyDB('characteristic.db')
@@ -26,6 +38,10 @@ def refill_characteristic_database(meal, kitchen, time):
     db_2.close()
 
 def delete_product(product):
+    """
+    function of delete the product from the database\n
+    функция удаления продукт из базы данных
+    """
     import tinydb
     from tinydb import TinyDB, Query, where
     db_1 = tinydb.TinyDB('products.db')
@@ -34,6 +50,10 @@ def delete_product(product):
     db_1.close()
 
 def delete_recipe(meal):
+    """
+    function of deleting a recipe from the database\
+    функция удаления рецепта из базы данных
+    """
     import tinydb
     from tinydb import TinyDB, Query, where
     db = tinydb.TinyDB('recipes.db')
