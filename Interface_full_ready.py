@@ -155,19 +155,43 @@ def NewWindow3():
     val.place(x=330, y=200) # расположение поля для ввода объема
     un.place(x=440, y=200)  # расположение поля для ввода единица измерения
 
-    def delete_button2():
-        """
-        function to close the child window when the button is pressed\n
-        функция закрывает дочернее окно при нажатии на кнопку 'Добавить'
-        """
-        Window3.destroy()
+    label = Label(Window3, text="Удаление продукта со склада:", fg="black", bg='#FFF5cb',
+                  font=("Times", "20", "bold"))  # текст в окне и цвет текста # шрифт
+    product = Label(Window3, text="Продукт:", bg="#FFF5cb", fg="black",
+                    font=("Etna", 10, "italic"))  # текст в окне и цвет текста # шрифт
+    valume = Label(Window3, text="Объем:", bg="#FFF5cb", fg="black",
+                   font=("Etna", 10, "italic"))  # текст в окне и цвет текста  # шрифт
+    unit = Label(Window3, text="Ед.измер:", bg="#FFF5cb", fg="black",
+                 font=("Etna", 10, "italic"))  # текст в окне и цвет текста # шрифт
+
+    label.place(x=130, y=250)  # расположение текста Удаление продукта со склада
+    product.place(x=50, y=300)  # расположение текста продукт
+    valume.place(x=270, y=300)  # расположение текста объем
+    unit.place(x=370, y=300)  # расположение текста ед. измерения
+
+    prod = Entry(Window3, bg="white", fg="black", width=20)  # строка для ввода продукт
+    val = Entry(Window3, bg="white", fg="black", width=5)  # строка для ввода объема
+    un = Entry(Window3, bg="white", fg="black", width=5)  # строка для ввода единица измерения
+
+    prod.place(x=140, y=300)  # расположение поля для ввода продукт
+    val.place(x=330, y=300)  # расположение поля для ввода объема
+    un.place(x=440, y=300)  # расположение поля для ввода единица измерения
+
+    # def delete_button2():
+    # """
+    # function to close the child window when the button is pressed\n
+    # функция закрывает дочернее окно при нажатии на кнопку 'Добавить'
+    # """
+    # Window3.destroy()
 
     button5 = Button(Window3, text="Добавить", command=lambda: (refill_product_database(str(prod.get()), str(val.get()),
-                                                                                        str(un.get())),
-                                                                delete_button2()))  # кнопка для добавления продукта на склад и закрытие окна
+                                                                                        str(un.get()))))  # кнопка для добавления продукта на склад и закрытие окна
 
+    button5.place(x=270, y=400)  # расположение кнопки для добавления продукта на склад и закрытие окна
 
-    button5.place(x=280, y=400) # расположение кнопки для добавления продукта на склад и закрытие окна
+    button6 = Button(Window3, text="Удалить", command=lambda: (refill_product_database(str(prod.forget()), str(val.forget()),
+                                                                                        str(un.forget()))))
+    button6.place(x=350, y=400)
 
 
 Window = Tk()  # основное окно
