@@ -25,3 +25,22 @@ def refill_characteristic_database(meal, kitchen, time):
     db_2.insert({'Блюдо': meal, 'Кухни': kitchen, 'Приём пищи': time})
     db_2.close()
 
+def delete_product(product):
+    import tinydb
+    from tinydb import TinyDB, Query, where
+    db_1 = tinydb.TinyDB('products.db')
+    Product = Query()
+    db_1.remove(where('Продукт') == product)
+    db_1.close()
+
+def delete_recipe(meal):
+    import tinydb
+    from tinydb import TinyDB, Query, where
+    db = tinydb.TinyDB('recipes.db')
+    Resipe = Query()
+    db.remove(where('Блюдо') == meal)
+    db_2 = tinydb.TinyDB('characteristic.db')
+    Meals = Query()
+    db_2.remove(where('Блюдо') == meal)
+    db.close()
+    db_2.close()
