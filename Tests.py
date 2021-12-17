@@ -78,5 +78,24 @@ class sumsTest(unittest.TestCase):
         db_1.close()
         db_2.close()
 
+    def test_5(self):
+        import tinydb
+        from tinydb import TinyDB, Query, where
+        db = tinydb.TinyDB('recipes.db')
+        db_1 = tinydb.TinyDB('products.db')
+        db_2 = tinydb.TinyDB('characteristic.db')
+        refill_characteristic_database("Глинтвейн Чёрная дыра", "Орбитная", "Завтрак")
+        refill_recipe_database("Глинтвейн Чёрная дыра", [["Чёрная материя", "3", "л", "Обязательно"], ["Струна космическая", "0.1", "г", "Обязательно"], ["Листик мяты", "2", "шт", "Необязательно"]])
+        refill_product_database("Чёрная материя", "97.5", "л")
+        refill_product_database("Струна космическая", "14", "г")
+        self.assertEqual(choose("Орбитная", "Завтрак", "11"), "Глинтвейн Чёрная дыра (PART) Trouble:Листик мяты")
+        db.remove(where('Блюдо') == 'Глинтвейн Чёрная дыра')
+        db_1.remove(where('Продукт') == 'Чёрная материя')
+        db_1.remove(where('Продукт') == 'Струна космическая')
+        db_2.remove(where('Блюдо') == 'Глинтвейн Чёрная дыра')
+        db.close()
+        db_1.close()
+        db_2.close()
+
 if __name__ == "__main__":
     unittest.main()
