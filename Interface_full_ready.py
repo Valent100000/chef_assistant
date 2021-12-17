@@ -30,14 +30,14 @@ def NewWindow2():
     Window2_host = Toplevel(Window)
     Window2_host.geometry('650x450+300+200')  # размер окна
     Window2_host['bg'] = '#FFF5cb'  # цвет окна
-    canvas = Canvas(Window2_host) #
-    Window2 = Frame(canvas) #
+    canvas = Canvas(Window2_host) # прокручиваемый контейнер
+    Window2 = Frame(canvas) #добавление окна в контейнер canvas
     Window2_host.bind( "<Configure>",lambda e: canvas.configure(scrollregion=canvas.bbox("all"))) #
 
-    frame = Listbox(Window2, bg='#FFF5cb') # добавление спец поля для прокручиваемых элементов
+    frame = Frame(Window2, bg='#FFF5cb') # добавление спец поля для прокручиваемых элементов
     scrollbar = Scrollbar(Window2_host, orient='vertical', command=canvas.yview) # скрол в окне, ориентация вертикальная, команда пролистывания канвас
     scrollbar.pack(side=RIGHT, fill=Y) #  расположение скрола по правой стороне и движение по оси У
-    canvas.configure(yscrollcommand=scrollbar.set) #
+    canvas.configure(yscrollcommand=scrollbar.set) #перемещение поля canvas по вертикали
 
     dish_name = Label(Window2, text="Введите название блюда:", bg="#FFF5cb", fg="black",
                       font=("Etna", 10, "italic"))  # текст в окне , цвет текста, цвет заднего поля # шрифт
@@ -119,11 +119,11 @@ def NewWindow2():
     Widgets().add_entry(entryWidgets, labelWidgets)
     Button(Window2, text='+', command=lambda: Widgets().add_entry(entryWidgets, labelWidgets)).place(x=550, y=80) # кнопка добавить доп поля для ввода и расположение кнопки
 
-    scrollbar.pack() #
-    frame.pack(side='left', ipadx=400, ipady=800, expand=True) #
-    Window2.pack(side="left", fill="both", expand=True) #
-    canvas.create_window((0, 0), window=Window2, anchor="nw") #
-    canvas.pack(side="left", fill="both", expand=True) #
+    scrollbar.pack() 
+    frame.pack(side='left', ipadx=400, ipady=800, expand=True) # размер окна frame
+    Window2.pack(side="left", fill="both", expand=True) #выравнивание по левой стороне, 
+    canvas.create_window((0, 0), window=Window2, anchor="nw") #расположение контейнера, левый верхний угол имеет координаты 0,0
+    canvas.pack(side="left", fill="both", expand=True) #выравнивание по левой стороне, 
 
 
 def NewWindow3():
@@ -231,4 +231,3 @@ ingr_st_txt_horiz_coord = 465
 ingr_vertical_coord = 145
 
 Window.mainloop()
-
