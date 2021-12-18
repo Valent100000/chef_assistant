@@ -25,6 +25,7 @@ def NewWindow2():
     """
     creating a child window, in which we add recipes to the database\n
     создание дочернего окна, в котором мы добавляем рецепт в базу данных
+    основа кода добавления прокрутки окна на строках 33-41 и 122 - 126 была взята с источника: https://blog.teclado.com/tkinter-scrollable-frames/
     """
     Window2_host = Toplevel(Window)
     Window2_host.geometry('650x450+300+200')  # размер окна
@@ -242,4 +243,3 @@ ingr_st_txt_horiz_coord = 465
 ingr_vertical_coord = 145
 
 Window.mainloop()
-
