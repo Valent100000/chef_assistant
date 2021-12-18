@@ -1,6 +1,6 @@
 import unittest
 from chef_assistant import choose
-from database import refill_recipe_database, refill_product_database, refill_characteristic_database
+from database import refill_recipe_database, refill_product_database, refill_characteristic_database, delete_product, delete_recipe
 
 class sumsTest(unittest.TestCase):
     """
@@ -113,6 +113,46 @@ class sumsTest(unittest.TestCase):
         db_1.remove(where('Продукт') == 'Чёрная материя')
         db_1.remove(where('Продукт') == 'Струна космическая')
         db_2.remove(where('Блюдо') == 'Глинтвейн Чёрная дыра')
+        db.close()
+        db_1.close()
+        db_2.close()
+
+    def test_6(self):
+        """
+        test function of checking the possibility of adding and removing an ingredient\n
+        тест функция проверки возможно добавления и удаления ингридиента
+        """
+        import tinydb
+        from tinydb import TinyDB, Query, where
+        db = tinydb.TinyDB('recipes.db')
+        db_1 = tinydb.TinyDB('products.db')
+        db_2 = tinydb.TinyDB('characteristic.db')
+        refill_characteristic_database("Звёздный пломбир", "Галактическая", "Завтрак Обед Ужин")
+        refill_recipe_database("Звёздный пломбир", [["Солнечный ветер", "0.2", "г", "Обязательно"]])
+        refill_product_database("Солнечный ветер", "97.5", "г")
+        delete_product("Солнечный ветер")
+        self.assertEqual(choose("Галактическая", "Ужин", "1"), "Блюд не найдено!\nПополните склад и \nвнесите новые рецепты в базу.")
+        delete_recipe("Звёздный пломбир")
+        db.close()
+        db_1.close()
+        db_2.close()
+
+    def test_7(self):
+        """
+        test function of checking the possibility of adding and removing a recipe\n
+        тест функция проверки возможно добавления и удаления рецепта
+        """
+        import tinydb
+        from tinydb import TinyDB, Query, where
+        db = tinydb.TinyDB('recipes.db')
+        db_1 = tinydb.TinyDB('products.db')
+        db_2 = tinydb.TinyDB('characteristic.db')
+        refill_characteristic_database("Желе Планета", "Планетарная", "Завтрак Ужин")
+        refill_recipe_database("Желе Планета", [["Хвост кометы", "200", "г", "Необязательно"]])
+        refill_product_database("Хвост кометы", "9700", "г")
+        delete_recipe("Желе Планета")
+        self.assertEqual(choose("Планетарная", "Ужин", "14"), "Блюд не найдено!\nПополните склад и \nвнесите новые рецепты в базу.")
+        delete_product("Хвост кометы")
         db.close()
         db_1.close()
         db_2.close()
