@@ -107,6 +107,8 @@ def NewWindow2():
         function to close the child window when the button is pressed\n
         функция закрывает дочернее окно при нажатии на кнопку 'Готово'
         """
+        global ingr_vertical_coord
+        ingr_vertical_coord = 145
         Window2_host.destroy()
 
     button4 = Button(Window2_host, text="Готово", command=lambda: (
