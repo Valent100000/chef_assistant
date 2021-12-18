@@ -4,7 +4,7 @@ from database import refill_recipe_database, refill_product_database, refill_cha
 
 class sumsTest(unittest.TestCase):
     """
-    test function checks for the presence of all ingredients and all are mandatory\n
+    test function checks for the presence of all ingredients and all are mandatory
     тест функция проверяет на наличие всех ингредиентов и все являются обязательными
     """
     def test_1(self):
@@ -28,7 +28,7 @@ class sumsTest(unittest.TestCase):
 
     def test_2(self):
         """
-        test function with a lack of a sufficient amount of an optional ingredient\n
+        test function with a lack of a sufficient amount of an optional ingredient
         тест функция с отсутствием достаточного количества необязательного ингредиента
         """
         import tinydb
@@ -51,7 +51,7 @@ class sumsTest(unittest.TestCase):
 
     def test_3(self):
         """
-        test function with lack of sufficient required ingredient\n
+        test function with lack of sufficient required ingredient
         тест функция с отсутствием достаточного количества обязательного ингредиента
         """
         import tinydb
@@ -75,7 +75,7 @@ class sumsTest(unittest.TestCase):
 
     def test_4(self):
         """
-        test function with the absence of a mandatory ingredient in the product database\n
+        test function with the absence of a mandatory ingredient in the product database
         тест функция с отсутствием обязательного ингредиента в базе данных продуктов
         """
         import tinydb
@@ -96,7 +96,7 @@ class sumsTest(unittest.TestCase):
 
     def test_5(self):
         """
-        test function with the absence of an optional ingredient in the product database\n
+        test function with the absence of an optional ingredient in the product database
         тест функция с отсутствием необязательного ингредиента в базе данных продуктов
         """
         import tinydb
@@ -119,8 +119,8 @@ class sumsTest(unittest.TestCase):
 
     def test_6(self):
         """
-        test function of checking the possibility of adding and removing an ingredient\n
-        тест функция проверки возможно добавления и удаления ингридиента
+        test function of checking the possibility of adding and removing an ingredient
+        тест функция проверки возможно добавления и удаления ингредиента
         """
         import tinydb
         from tinydb import TinyDB, Query, where
@@ -139,7 +139,7 @@ class sumsTest(unittest.TestCase):
 
     def test_7(self):
         """
-        test function of checking the possibility of adding and removing a recipe\n
+        test function of checking the possibility of adding and removing a recipe
         тест функция проверки возможно добавления и удаления рецепта
         """
         import tinydb

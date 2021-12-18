@@ -6,7 +6,7 @@ from database import refill_recipe_database, refill_product_database, refill_cha
 def NewWindow():
     """
     creating the main window
-    result: collects data entered in the entry\n
+    result: collects data entered in the entry
     создание главного окна
     результат: собирает данные, введенные в поля для ввода
     """
@@ -18,12 +18,12 @@ def NewWindow():
 
     result = Label(Window1, text=choose(str(entry.get()), str(entry2.get()), str(entry3.get())), bg='#FFF5cb',
                    fg='#4F6000', font=("Etna", 13, "italic"))  # текстовый результат для выбора блюда
-    result.place(x=200, y=70)
+    result.place(x=130, y=70)
 
 
 def NewWindow2():
     """
-    creating a child window, in which we add recipes to the database\n
+    creating a child window, in which we add recipes to the database
     создание дочернего окна, в котором мы добавляем рецепт в базу данных
     основа кода добавления прокрутки окна на строках 33-41 и 122 - 126 была взята с источника: https://blog.teclado.com/tkinter-scrollable-frames/
     """
@@ -62,14 +62,21 @@ def NewWindow2():
 
     class Widgets():
         """
-        class for working with ingredients entered in the added entries when the button is clicked\n
+        class for working with ingredients entered in the added entries when the button is clicked
         класс для работы с ингредиентами, введенными в добавленные поля ввода с помощью кнопки
         """
 
         def add_entry(self, entryWidgets, labelWidgets):
             """
-            function for adding a new field for entering information when the button is clicked\n
+            function for adding a new field for entering information when the button is clicked
+            Parameters
+            entryWidgets: array[Entries]
+            labelWidgets: array[Labels]
+
             функция для добавления нового поля для ввода информации при нажатии на кнопку
+            Параметры:
+            entryWidgets массив всех виджетов entry
+            labelWidgets массив всех виджетов label
             """
             global ingr_ingr_horiz_coord, ingr_ingr_txt_horiz_coord, ingr_val_horiz_coord, ingr_val_txt_horiz_coord, ingr_un_horiz_coord, ingr_un_txt_horiz_coord, ingr_st_horiz_coord, ingr_st_txt_horiz_coord, ingr_vertical_coord
             entryWidgets.append(
@@ -92,19 +99,26 @@ def NewWindow2():
 
             ingr_vertical_coord += 50
 
-        def getEntries(self, entryWidgets, massive_ingridients):
+        def getEntries(self, entryWidgets, massive_ingredients):
             """
-            function for reading information about the entered ingredient and sending it to the database\n
+            function for reading information about the entered ingredient and sending it to the database
+            Parameters
+            entryWidgets: array[entryWidgets]
+            massive_ingredients: array of arrays of lines that contain the entered information about the ingredient of the dish
+
             функция для считывания информации о введенном ингредиенте и отправки его в базу данных
+            Параметры
+            entryWidgets: массив всех виджетов entry
+            massive_ingredients: массив из массивов из строчек, которые содержат введённую информацию о ингредиенте блюда
             """
             for x in entryWidgets:
-                massive_ingridients.append([str(x[0].get()), str(x[1].get()), str(x[2].get()), str(x[3].get())])
+                massive_ingredients.append([str(x[0].get()), str(x[1].get()), str(x[2].get()), str(x[3].get())])
 
-            return (massive_ingridients)
+            return (massive_ingredients)
 
     def delete_button():
         """
-        function to close the child window when the button is pressed\n
+        function to close the child window when the button is pressed
         функция закрывает дочернее окно при нажатии на кнопку 'Готово'
         """
         global ingr_vertical_coord
@@ -186,7 +200,7 @@ def NewWindow3():
 
     def delete_button():
         """
-        function to close the child window when the button is pressed\n
+        function to close the child window when the button is pressed
         функция закрывает дочернее окно при нажатии на кнопку 'Добавить'
         """
         Window3.destroy()
